@@ -3,7 +3,6 @@ import sys
 import types
 import pytest
 from unittest.mock import patch, MagicMock, mock_open
-import chatbot
 
 
 @pytest.fixture(autouse=True)
@@ -21,6 +20,9 @@ def patch_env(monkeypatch, tmp_path):
     # Create dummy files
     (tmp_path / "Profile.pdf").write_text("PDF page 1 text", encoding="utf-8")
     (tmp_path / "summary.txt").write_text("Summary text", encoding="utf-8")
+
+
+import chatbot
 
 
 def test_load_pdf_text(monkeypatch, tmp_path):
