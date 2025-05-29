@@ -22,10 +22,9 @@ def patch_env(monkeypatch, tmp_path):
     (tmp_path / "summary.txt").write_text("Summary text", encoding="utf-8")
 
 
-import chatbot
-
-
 def test_load_pdf_text(monkeypatch, tmp_path):
+    import chatbot
+
     # Patch PdfReader to simulate PDF reading
     class DummyPage:
         def extract_text(self):
@@ -40,12 +39,16 @@ def test_load_pdf_text(monkeypatch, tmp_path):
 
 
 def test_load_text_file(tmp_path):
+    import chatbot
+
     file_path = tmp_path / "test.txt"
     file_path.write_text("hello world", encoding="utf-8")
     assert chatbot.load_text_file(str(file_path)) == "hello world"
 
 
 def test_build_system_prompt():
+    import chatbot
+
     prompt = chatbot.build_system_prompt("Alice", "summary", "linkedin")
     assert "Alice" in prompt
     assert "summary" in prompt
@@ -53,6 +56,8 @@ def test_build_system_prompt():
 
 
 def test_build_evaluator_system_prompt():
+    import chatbot
+
     prompt = chatbot.build_evaluator_system_prompt("Bob", "sum", "li")
     assert "Bob" in prompt
     assert "sum" in prompt
@@ -60,6 +65,8 @@ def test_build_evaluator_system_prompt():
 
 
 def test_evaluator_user_prompt():
+    import chatbot
+
     result = chatbot.evaluator_user_prompt("reply", "msg", "hist")
     assert "reply" in result
     assert "msg" in result
@@ -67,6 +74,8 @@ def test_evaluator_user_prompt():
 
 
 def test_get_openai_reply(monkeypatch):
+    import chatbot
+
     fake_openai = MagicMock()
     fake_openai.chat.completions.create.return_value.choices = [
         types.SimpleNamespace(message=types.SimpleNamespace(content="the reply"))
@@ -77,6 +86,8 @@ def test_get_openai_reply(monkeypatch):
 
 
 def test_evaluate(monkeypatch):
+    import chatbot
+
     fake_gemini = MagicMock()
     fake_eval = types.SimpleNamespace(
         choices=[
@@ -95,6 +106,8 @@ def test_evaluate(monkeypatch):
 
 
 def test_rerun(monkeypatch):
+    import chatbot
+
     fake_openai = MagicMock()
     fake_openai.chat.completions.create.return_value.choices = [
         types.SimpleNamespace(message=types.SimpleNamespace(content="rerun reply"))
@@ -107,6 +120,8 @@ def test_rerun(monkeypatch):
 
 
 def test_chat_accept(monkeypatch):
+    import chatbot
+
     # Acceptable evaluation
     monkeypatch.setattr(chatbot, "get_openai_reply", lambda *a, **k: "good reply")
     monkeypatch.setattr(
@@ -119,6 +134,8 @@ def test_chat_accept(monkeypatch):
 
 
 def test_chat_reject(monkeypatch):
+    import chatbot
+
     # Not acceptable, triggers rerun
     monkeypatch.setattr(chatbot, "get_openai_reply", lambda *a, **k: "bad reply")
     monkeypatch.setattr(
@@ -132,6 +149,8 @@ def test_chat_reject(monkeypatch):
 
 
 def test_chat_pig_latin(monkeypatch):
+    import chatbot
+
     # Test pig latin system prompt
     called = {}
 
@@ -150,6 +169,8 @@ def test_chat_pig_latin(monkeypatch):
 
 
 def test_evaluation_model():
+    import chatbot
+
     eval = chatbot.Evaluation(is_acceptable=False, feedback="bad")
     assert not eval.is_acceptable
     assert eval.feedback == "bad"
