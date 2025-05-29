@@ -16,14 +16,13 @@ DEFAULT_NAME = os.getenv("PROFILE_NAME", "Ag3nt Sc4rn")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
 GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GEMINI_BASE_URL = os.getenv(
     "GOOGLE_API_BASE_URL",
     "https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
 
-openai = OpenAI(api_key=OPENAI_API_KEY)
+openai = OpenAI()
 gemini = OpenAI(api_key=GEMINI_API_KEY, base_url=GEMINI_BASE_URL)
 
 
