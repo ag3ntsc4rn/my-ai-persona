@@ -17,6 +17,7 @@ def patch_env(monkeypatch, tmp_path):
     monkeypatch.setenv("GEMINI_MODEL", "gemini-test")
     monkeypatch.setenv("GOOGLE_API_KEY", "fake-key")
     monkeypatch.setenv("GOOGLE_API_BASE_URL", "https://fake.url/")
+    monkeypatch.setenv("OPENAI_API_KEY", "fake-openai-key")
     # Create dummy files
     (tmp_path / "Profile.pdf").write_text("PDF page 1 text", encoding="utf-8")
     (tmp_path / "summary.txt").write_text("Summary text", encoding="utf-8")
