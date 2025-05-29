@@ -23,7 +23,7 @@ GEMINI_BASE_URL = os.getenv(
 )
 
 
-openai = OpenAI()
+openai = OpenAI(api_key=OPENAI_API_KEY)
 gemini = OpenAI(api_key=GEMINI_API_KEY, base_url=GEMINI_BASE_URL)
 
 
