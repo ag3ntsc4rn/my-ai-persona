@@ -29,7 +29,7 @@ and provides a Gradio chat interface.
 | `GEMINI_MODEL`          | Gemini model name                                   | `gemini-2.0-flash`                                |
 | `GOOGLE_API_KEY`        | Gemini API key                                      | **required**                                      |
 | `GOOGLE_API_BASE_URL`   | Gemini API base URL                                 | `https://generativelanguage.googleapis.com/v1beta/openai/` |
-
+| `OPENAI_API_KEY`        | OpenAI API key                                      | **required**                                      |
 ---
 
 ## Configuration & Usage
@@ -53,6 +53,7 @@ and provides a Gradio chat interface.
     GEMINI_MODEL=gemini-2.0-flash
     GOOGLE_API_KEY=your-gemini-api-key
     GOOGLE_API_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+    OPENAI_API_KEY=openai-api-key
     ```
 
 4. **Run the chatbot:**
